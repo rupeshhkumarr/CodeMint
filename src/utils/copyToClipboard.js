@@ -1,41 +1,88 @@
 // src/utils/copyToClipboard.js
+import toast from 'react-hot-toast';
+
 export const copyToClipboard = async (text) => {
   try {
     await navigator.clipboard.writeText(text);
-
-    // Show success message
-    const toast = document.createElement("div");
-    toast.textContent = "Copied to clipboard!";
-    toast.className =
-      "fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in";
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-      document.body.removeChild(toast);
-    }, 2000);
+    
+    // Show success toast
+    toast.success('Copied to clipboard!', {
+      duration: 2000,
+      position: 'top-right',
+      style: {
+        background: '#10B981',
+        color: 'white',
+        fontSize: '14px',
+        fontWeight: '500',
+        borderRadius: '8px',
+        padding: '12px 16px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      },
+      iconTheme: {
+        primary: 'white',
+        secondary: '#10B981',
+      },
+    });
 
     return true;
   } catch (err) {
-    console.error("Failed to copy: ", err);
+    console.error('Failed to copy: ', err);
 
     // Fallback for older browsers
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textArea);
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
 
-    const toast = document.createElement("div");
-    toast.textContent = "Copied to clipboard!";
-    toast.className =
-      "fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50";
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-      document.body.removeChild(toast);
-    }, 2000);
-
-    return true;
+      if (successful) {
+        toast.success('Copied to clipboard!', {
+          duration: 2000,
+          position: 'top-right',
+          style: {
+            background: '#10B981',
+            color: 'white',
+            fontSize: '14px',
+            fontWeight: '500',
+            borderRadius: '8px',
+            padding: '12px 16px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+          iconTheme: {
+            primary: 'white',
+            secondary: '#10B981',
+          },
+        });
+        return true;
+      } else {
+        throw new Error('Fallback copy failed');
+      }
+    } catch (fallbackErr) {
+      console.error('Fallback copy failed: ', fallbackErr);
+      
+      // Show error toast
+      toast.error('Failed to copy to clipboard', {
+        duration: 3000,
+        position: 'top-right',
+        style: {
+          background: '#EF4444',
+          color: 'white',
+          fontSize: '14px',
+          fontWeight: '500',
+          borderRadius: '8px',
+          padding: '12px 16px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        },
+      });
+      
+      return false;
+    }
   }
 };

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import AppRoutes from './routes/AppRoutes'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -24,6 +25,24 @@ function App() {
           <AppRoutes />
         </main>
         <Footer />
+        <Toaster
+          toastOptions={{
+            className: '',
+            style: {
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            },
+            success: {
+              duration: 2000,
+              theme: {
+                primary: 'green',
+                secondary: 'black',
+              },
+            },
+            error: {
+              duration: 3000,
+            },
+          }}
+        />
       </div>
     </BrowserRouter>
   )
