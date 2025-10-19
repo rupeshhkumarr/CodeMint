@@ -1,7 +1,7 @@
 [
     {
         "title": "Glass Morphism",
-        "css": ".glass {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(10px);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n}",
+        "css": ".glass {\n  background: rgba(255, 255, 255, 0.3);\n  backdrop-filter: blur(10px);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n}",
         "type": "effect",
         "contributor": "alicecodes",
         "tags": [

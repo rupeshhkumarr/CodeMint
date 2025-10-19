@@ -49,7 +49,7 @@ const CSSSnippets = () => {
               <button
                 key={type}
                 onClick={() => setSelectedType(type)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+                className={`cursor-pointer px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                   selectedType === type
                     ? "bg-blue-600 text-white"
                     : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -89,8 +89,8 @@ const CSSSnippets = () => {
                 </div>
 
                 {/* Preview Box */}
-                <div className="mb-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
-                  <div className="flex justify-center items-center min-h-[80px]">
+                <div className="mb-4 p-4 bg-gray-100 dark:bg-slate-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                  <div className=" cursor-pointer flex justify-center items-center min-h-[80px]">
                     <div
                       className="text-center"
                       dangerouslySetInnerHTML={{
@@ -137,7 +137,7 @@ const CSSSnippets = () => {
               <div className="bg-gray-50 dark:bg-gray-700/50 px-6 py-4">
                 <button
                   onClick={() => handleCopyCode(snippet.css)}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center gap-2"
+                  className="cursor-pointer w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center gap-2"
                 >
                   📋 Copy CSS
                 </button>
@@ -174,7 +174,8 @@ const CSSSnippets = () => {
   "title": "Your Snippet Name",
   "css": ".your-class {\\n  property: value;\\n}",
   "type": "effect",
-  "contributor": "yourusername",
+  "contributor": "yourname",
+  "contributor_github": "yourgithuburl",
   "tags": ["animation", "hover"]
 }`}
               </pre>

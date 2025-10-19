@@ -53,7 +53,7 @@ const Home = () => {
             className="text-center"
           >
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-              Code<span className="text-amber-400" >Mint</span>
+              Code<span className="text-amber-400">Mint</span>
             </h1>
             <p className="text-amber-200 text-md md:text-xl dark:text-amber-200 mb-8 max-w-3xl mx-auto">
               Design faster. Build smarter.
@@ -94,10 +94,14 @@ const Home = () => {
                 key={section.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.5 }}
+                whileHover={{ scale: 1.05,transition: { duration: 0.3 } }}
+                transition={{
+                  delay: index * 0.1 + 0.5,
+                  duration: 0.3,
+                }}
               >
                 <Link to={section.path} className="block group">
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 h-full border border-gray-200 dark:border-gray-700">
+                  <div className="bg-white ease-in-out dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-1000 h-full border border-gray-200 dark:border-gray-700">
                     <div
                       className={`h-2 bg-gradient-to-r ${section.color} rounded-t-xl`}
                     ></div>

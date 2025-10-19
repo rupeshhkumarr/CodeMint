@@ -88,7 +88,8 @@ Add your snippet to `src/data/snippets.json`:
   "title": "Your Snippet",
   "css": ".your-class { color: red; }",
   "type": "effect",
-  "contributor": "YourUsername",
+  "contributor": "yourname",
+  "contributor_github": "yourgithuburl",
   "tags": ["animation", "hover"]
 }
 ```
@@ -107,7 +108,8 @@ Add your effect to `src/data/effects.json`:
   "type": "animation",
   "previewClass": "your-effect",
   "css": "@keyframes your-effect { ... }",
-  "contributor": "YourUsername",
+  "contributor": "yourname",
+  "contributor_github": "yourgithuburl",
   "tags": ["animation", "hover"]
 }
 ```
@@ -120,7 +122,8 @@ Add your color palette to `src/data/colors.json`:
   "name": "Your Palette",
   "type": "gradient",
   "colors": ["#hex1", "#hex2", "#hex3"],
-  "contributor": "YourUsername",
+  "contributor": "yourname",
+  "contributor_github": "yourgithuburl",
   "tags": ["warm", "vibrant"]
 }
 ```

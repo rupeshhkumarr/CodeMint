@@ -72,7 +72,7 @@ const ColorUtilities = () => {
             <button
               key={type}
               onClick={() => setSelectedType(type)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+              className={`cursor-pointer px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                 selectedType === type
                   ? "bg-pink-600 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -148,14 +148,14 @@ const ColorUtilities = () => {
                 <div className="flex flex-wrap gap-2 mb-4">
                   <button
                     onClick={() => handleCopyColor(color.colors, "hex")}
-                    className="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
+                    className="cursor-pointer flex-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
                   >
                     Copy HEX
                   </button>
                   {color.type === "gradient" && (
                     <button
                       onClick={() => handleCopyColor(color.colors, "gradient")}
-                      className="flex-1 bg-pink-600 hover:bg-pink-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
+                      className="cursor-pointer flex-1 bg-pink-600 hover:bg-pink-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
                     >
                       Copy Gradient
                     </button>
@@ -211,7 +211,8 @@ const ColorUtilities = () => {
   "name": "Your Palette Name",
   "type": "palette",
   "colors": ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4"],
-  "contributor": "yourusername",
+  "contributor": "yourname",
+  "contributor_github": "yourgithuburl",
   "tags": ["vibrant", "fresh"]
 }
 
@@ -220,7 +221,8 @@ const ColorUtilities = () => {
   "name": "Your Gradient Name",
   "type": "gradient",
   "colors": ["#667eea", "#764ba2"],
-  "contributor": "yourusername",
+  "contributor": "yourname",
+  "contributor_github": "yourgithuburl",
   "tags": ["purple", "smooth"]
 }`}
               </pre>

@@ -147,7 +147,7 @@ const ComponentsGallery = () => {
                     : [...prev, tag]
                 );
               }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200 ${
+              className={`cursor-pointer px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200 ${
                 selectedTags.includes(tag)
                   ? "bg-blue-600 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -166,9 +166,9 @@ const ComponentsGallery = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+              className="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
             >
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 flex justify-center items-center min-h-[120px]">
+              <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-700/50 flex justify-center items-center min-h-[120px]">
                 <component.Component />
               </div>
               <div className="p-6">
@@ -196,7 +196,7 @@ const ComponentsGallery = () => {
                       sourceCodes[component.path] ===
                         "// Source code not available"
                     }
-                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                    className="cursor-pointer bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
                   >
                     Copy Code
                   </button>

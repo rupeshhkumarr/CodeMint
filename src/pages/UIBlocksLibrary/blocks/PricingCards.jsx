@@ -100,7 +100,7 @@ const PricingCards = () => {
                   ))}
                 </ul>
                 <button
-                  className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors duration-200 ${
+                  className={`cursor-pointer w-full py-3 px-4 rounded-lg font-semibold transition-colors duration-200 ${
                     plan.popular
                       ? "bg-blue-600 hover:bg-blue-700 text-white"
                       : "bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white"

@@ -42,7 +42,7 @@ const EffectsLab = () => {
             <button
               key={type}
               onClick={() => setSelectedType(type)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+              className={`cursor-pointer px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                 selectedType === type
                   ? "bg-purple-600 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -74,9 +74,9 @@ const EffectsLab = () => {
                 </div>
 
                 {/* Effect Preview */}
-                <div className="mb-4 p-8 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 flex justify-center items-center min-h-[120px]">
+                <div className="mb-4 p-8 bg-gray-100 dark:bg-slate-700 rounded-lg border border-gray-200 dark:border-gray-600 flex justify-center items-center min-h-[120px]">
                   <div
-                    className={`text-center p-4 bg-white dark:bg-gray-600 rounded-lg shadow-md ${effect.previewClass}`}
+                    className={`cursor-pointer text-center p-4 bg-white dark:bg-gray-200 rounded-lg shadow-md ${effect.previewClass}`}
                     style={{
                       minWidth: "100px",
                       minHeight: "80px",
@@ -117,7 +117,7 @@ const EffectsLab = () => {
               <div className="bg-gray-50 dark:bg-gray-700/50 px-6 py-4">
                 <button
                   onClick={() => handleCopyCode(effect.css)}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                  className="cursor-pointer w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   ✨ Copy Effect CSS
                 </button>
@@ -155,7 +155,8 @@ const EffectsLab = () => {
   "type": "animation",
   "previewClass": "your-effect",
   "css": "your css here",
-  "contributor": "yourusername",
+  "contributor": "yourname",
+  "contributor_github": "yourgithuburl",
   "tags": ["animation", "hover"]
 }`}
               </pre>
