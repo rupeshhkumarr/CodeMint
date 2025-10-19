@@ -80,7 +80,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             {/* Right Side Controls */}
             <div className="flex items-center space-x-4">
               {/* Dark Mode Toggle */}
-              <button
+              {/* <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
                 aria-label="Toggle dark mode"
@@ -90,7 +90,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 ) : (
                   <FiMoon className="w-5 h-5" />
                 )}
-              </button>
+              </button> */}
 
               {/* Mobile Menu Button */}
               <button
@@ -188,7 +188,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               </nav>
 
               {/* Dark Mode Toggle in Mobile Menu */}
-              <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+              {/* <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                 <button
                   onClick={() => setDarkMode(!darkMode)}
                   className="flex items-center justify-between w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
@@ -211,7 +211,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                     <div className="w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-200" />
                   </div>
                 </button>
-              </div>
+              </div> */}
 
               {/* Footer Section */}
               <div className="p-4 border-t border-gray-200 dark:border-gray-700 mt-auto">
