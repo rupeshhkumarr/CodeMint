@@ -238,9 +238,9 @@ const UIBlocksLibrary = () => {
                       ))}
                     </div>
                   </div>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    by {block.contributor}
-                  </span>
+                  <a className="text-sm text-gray-500 dark:text-gray-400 " href={block.contributor_github ? block.contributor_github : "https://github.com/roshansuthar1105"} target="_blank" >
+                    by <span className=" hover:text-purple-400 cursor-pointer hover:underline " > {block.contributor} </span>
+                  </a>
                 </div>
 
                 {/* Block Preview */}

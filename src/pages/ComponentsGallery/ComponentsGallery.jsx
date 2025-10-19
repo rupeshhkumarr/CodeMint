@@ -186,9 +186,9 @@ const ComponentsGallery = () => {
                   ))}
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    by {component.contributor}
-                  </span>
+                  <a className="text-sm text-gray-500 dark:text-gray-400 " href={component.contributor_github ? component.contributor_github : "https://github.com/roshansuthar1105"} target="_blank" >
+                    by <span className=" hover:text-purple-400 cursor-pointer hover:underline " > {component.contributor} </span>
+                  </a>
                   <button
                     onClick={() => handleCopyCode(component.path)}
                     disabled={

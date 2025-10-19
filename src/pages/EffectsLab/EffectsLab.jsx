@@ -108,9 +108,9 @@ const EffectsLab = () => {
                       </span>
                     ))}
                   </div>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    by {effect.contributor}
-                  </span>
+                  <a className="text-sm text-gray-500 dark:text-gray-400 " href={effect.contributor_github ? effect.contributor_github : "https://github.com/roshansuthar1105"} target="_blank" >
+                    by <span className=" hover:text-purple-400 cursor-pointer hover:underline " > {effect.contributor} </span>
+                  </a>
                 </div>
               </div>
 

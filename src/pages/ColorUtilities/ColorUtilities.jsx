@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import colorsData from "../../data/colors.json";
 import { copyToClipboard } from "../../utils/copyToClipboard";
-
+import { MdOutlineContentCopy } from "react-icons/md";
 const ColorUtilities = () => {
   const [colors] = useState(colorsData);
   const [selectedType, setSelectedType] = useState("all");
@@ -23,6 +23,8 @@ const ColorUtilities = () => {
       textToCopy = `linear-gradient(45deg, ${colorValue.join(", ")})`;
     } else if (format === "hex" && Array.isArray(colorValue)) {
       textToCopy = colorValue.join(", ");
+    }else if(format==="singlehex"){
+      textToCopy=colorValue;
     }
 
     await copyToClipboard(textToCopy);
@@ -124,15 +126,21 @@ const ColorUtilities = () => {
                 {/* Color Swatches */}
                 <div className="grid grid-cols-5 gap-2 mb-6">
                   {color.colors.map((colorHex, colorIndex) => (
-                    <div key={colorIndex} className="text-center">
-                      <div
-                        className="w-8 h-8 rounded-md mx-auto mb-1 border border-gray-300 dark:border-gray-600"
-                        style={{ backgroundColor: colorHex }}
-                      />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-mono">
-                        {colorHex}
-                      </span>
+                    <div key={colorIndex} className="text-center relative group">
+                    <div
+                      className="w-8 h-8 rounded-md mx-auto mb-1 border border-gray-300 cursor-pointer relative overflow-hidden"
+                      style={{ backgroundColor: colorHex }}
+                      onClick={() => handleCopyColor(colorHex, "singlehex")}
+                    >
+                      {/* Copy icon that appears on hover */}
+                      <div className="absolute inset-0 group-hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
+                        <MdOutlineContentCopy className="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                      </div>
                     </div>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono">
+                      {colorHex}
+                    </span>
+                  </div>
                   ))}
                 </div>
 
@@ -165,9 +173,9 @@ const ColorUtilities = () => {
                       </span>
                     ))}
                   </div>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    by {color.contributor}
-                  </span>
+                  <a className="text-sm text-gray-500 dark:text-gray-400 " href={color.contributor_github ? color.contributor_github : "https://github.com/roshansuthar1105"} target="_blank" >
+                    by <span className=" hover:text-purple-400 cursor-pointer hover:underline " > {color.contributor} </span>
+                  </a>
                 </div>
               </div>
             </motion.div>

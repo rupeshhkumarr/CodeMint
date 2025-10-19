@@ -8,11 +8,13 @@
             "#60a5fa",
             "#93c5fd"
         ],
-        "contributor": "caroldesign",
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
         "tags": [
             "blue",
             "gradient",
-            "ocean"
+            "ocean",
+            "calm"
         ]
     },
     {
@@ -24,11 +26,626 @@
             "#ec4899",
             "#8b5cf6"
         ],
-        "contributor": "alicecodes",
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
         "tags": [
             "warm",
             "sunset",
             "vibrant"
+        ]
+    },
+    {
+        "name": "Forest Greens",
+        "type": "gradient",
+        "colors": [
+            "#065f46",
+            "#059669",
+            "#10b981",
+            "#34d399"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "green",
+            "nature",
+            "fresh",
+            "forest"
+        ]
+    },
+    {
+        "name": "Royal Purples",
+        "type": "gradient",
+        "colors": [
+            "#4c1d95",
+            "#7c3aed",
+            "#8b5cf6",
+            "#a78bfa"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "purple",
+            "royal",
+            "luxury",
+            "gradient"
+        ]
+    },
+    {
+        "name": "Fiery Reds",
+        "type": "palette",
+        "colors": [
+            "#7f1d1d",
+            "#dc2626",
+            "#ef4444",
+            "#f87171"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "red",
+            "fire",
+            "passion",
+            "energy"
+        ]
+    },
+    {
+        "name": "Sunny Yellows",
+        "type": "gradient",
+        "colors": [
+            "#713f12",
+            "#eab308",
+            "#facc15",
+            "#fef08a"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "yellow",
+            "sunny",
+            "happy",
+            "bright"
+        ]
+    },
+    {
+        "name": "Cyber Punk",
+        "type": "gradient",
+        "colors": [
+            "#00ff87",
+            "#60efff",
+            "#0061ff",
+            "#ff1b6b"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "neon",
+            "cyber",
+            "futuristic",
+            "vibrant"
+        ]
+    },
+    {
+        "name": "Pastel Dreams",
+        "type": "palette",
+        "colors": [
+            "#fecaca",
+            "#fed7aa",
+            "#fef08a",
+            "#bbf7d0",
+            "#bfdbfe",
+            "#e9d5ff"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "pastel",
+            "soft",
+            "dreamy",
+            "rainbow"
+        ]
+    },
+    {
+        "name": "Deep Ocean",
+        "type": "gradient",
+        "colors": [
+            "#0f172a",
+            "#1e3a8a",
+            "#3b82f6",
+            "#06b6d4"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "dark",
+            "ocean",
+            "deep",
+            "mysterious"
+        ]
+    },
+    {
+        "name": "Autumn Leaves",
+        "type": "palette",
+        "colors": [
+            "#78350f",
+            "#d97706",
+            "#f59e0b",
+            "#fbbf24"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "autumn",
+            "warm",
+            "leaves",
+            "cozy"
+        ]
+    },
+    {
+        "name": "Arctic Ice",
+        "type": "gradient",
+        "colors": [
+            "#f0f9ff",
+            "#e0f2fe",
+            "#bae6fd",
+            "#7dd3fc"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "ice",
+            "cold",
+            "arctic",
+            "clean"
+        ]
+    },
+    {
+        "name": "Berry Mix",
+        "type": "palette",
+        "colors": [
+            "#831843",
+            "#be185d",
+            "#ec4899",
+            "#f472b6"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "berry",
+            "pink",
+            "sweet",
+            "feminine"
+        ]
+    },
+    {
+        "name": "Earth Tones",
+        "type": "palette",
+        "colors": [
+            "#44403c",
+            "#78716c",
+            "#a8a29e",
+            "#d6d3d1"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "earth",
+            "neutral",
+            "minimal",
+            "natural"
+        ]
+    },
+    {
+        "name": "Sunrise Glow",
+        "type": "gradient",
+        "colors": [
+            "#fef3c7",
+            "#f59e0b",
+            "#dc2626",
+            "#7c3aed"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "sunrise",
+            "glow",
+            "morning",
+            "warm"
+        ]
+    },
+    {
+        "name": "Midnight Sky",
+        "type": "gradient",
+        "colors": [
+            "#0f172a",
+            "#1e293b",
+            "#334155",
+            "#475569"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "midnight",
+            "dark",
+            "sky",
+            "professional"
+        ]
+    },
+    {
+        "name": "Tropical Paradise",
+        "type": "palette",
+        "colors": [
+            "#fef3c7",
+            "#86efac",
+            "#5eead4",
+            "#93c5fd"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "tropical",
+            "vibrant",
+            "paradise",
+            "summer"
+        ]
+    },
+    {
+        "name": "Rose Gold",
+        "type": "gradient",
+        "colors": [
+            "#fdf2f8",
+            "#fbcfe8",
+            "#f9a8d4",
+            "#ec4899"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "rose",
+            "gold",
+            "elegant",
+            "luxury"
+        ]
+    },
+    {
+        "name": "Electric Neon",
+        "type": "gradient",
+        "colors": [
+            "#00ff87",
+            "#60efff",
+            "#0061ff",
+            "#ff1b6b"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "electric",
+            "neon",
+            "bright",
+            "modern"
+        ]
+    },
+    {
+        "name": "Mint Fresh",
+        "type": "palette",
+        "colors": [
+            "#ecfdf5",
+            "#a7f3d0",
+            "#34d399",
+            "#059669"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "mint",
+            "fresh",
+            "clean",
+            "cool"
+        ]
+    },
+    {
+        "name": "Sunset Dusk",
+        "type": "gradient",
+        "colors": [
+            "#fef3c7",
+            "#f59e0b",
+            "#dc2626",
+            "#7c3aed"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "sunset",
+            "dusk",
+            "evening",
+            "warm"
+        ]
+    },
+    {
+        "name": "Ocean Depths",
+        "type": "gradient",
+        "colors": [
+            "#0c4a6e",
+            "#0369a1",
+            "#0ea5e9",
+            "#38bdf8"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "ocean",
+            "deep",
+            "blue",
+            "water"
+        ]
+    },
+    {
+        "name": "Forest Mist",
+        "type": "gradient",
+        "colors": [
+            "#064e3b",
+            "#047857",
+            "#10b981",
+            "#6ee7b7"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "forest",
+            "mist",
+            "green",
+            "nature"
+        ]
+    },
+    {
+        "name": "Desert Sand",
+        "type": "palette",
+        "colors": [
+            "#fef3c7",
+            "#fcd34d",
+            "#f59e0b",
+            "#d97706"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "desert",
+            "sand",
+            "warm",
+            "earth"
+        ]
+    },
+    {
+        "name": "Berry Smoothie",
+        "type": "gradient",
+        "colors": [
+            "#fdf2f8",
+            "#fbcfe8",
+            "#f9a8d4",
+            "#ec4899"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "berry",
+            "smoothie",
+            "pink",
+            "sweet"
+        ]
+    },
+    {
+        "name": "Cyber Blue",
+        "type": "gradient",
+        "colors": [
+            "#06b6d4",
+            "#3b82f6",
+            "#1d4ed8",
+            "#1e40af"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "cyber",
+            "blue",
+            "futuristic",
+            "tech"
+        ]
+    },
+    {
+        "name": "Lavender Field",
+        "type": "palette",
+        "colors": [
+            "#faf5ff",
+            "#e9d5ff",
+            "#d8b4fe",
+            "#c084fc"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "lavender",
+            "purple",
+            "soft",
+            "calm"
+        ]
+    },
+    {
+        "name": "Sunflower Gold",
+        "type": "gradient",
+        "colors": [
+            "#fef3c7",
+            "#fcd34d",
+            "#f59e0b",
+            "#d97706"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "sunflower",
+            "gold",
+            "yellow",
+            "happy"
+        ]
+    },
+    {
+        "name": "Midnight Purple",
+        "type": "gradient",
+        "colors": [
+            "#1e1b4b",
+            "#3730a3",
+            "#6366f1",
+            "#a5b4fc"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "midnight",
+            "purple",
+            "dark",
+            "mysterious"
+        ]
+    },
+    {
+        "name": "Coral Reef",
+        "type": "palette",
+        "colors": [
+            "#fecaca",
+            "#fda4af",
+            "#fb7185",
+            "#f43f5e"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "coral",
+            "reef",
+            "pink",
+            "ocean"
+        ]
+    },
+    {
+        "name": "Emerald Green",
+        "type": "gradient",
+        "colors": [
+            "#064e3b",
+            "#047857",
+            "#10b981",
+            "#34d399"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "emerald",
+            "green",
+            "luxury",
+            "rich"
+        ]
+    },
+    {
+        "name": "Cotton Candy",
+        "type": "gradient",
+        "colors": [
+            "#fdf2f8",
+            "#fce7f3",
+            "#fbcfe8",
+            "#f9a8d4"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "cotton",
+            "candy",
+            "pink",
+            "sweet"
+        ]
+    },
+    {
+        "name": "Stormy Gray",
+        "type": "palette",
+        "colors": [
+            "#374151",
+            "#4b5563",
+            "#6b7280",
+            "#9ca3af"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "stormy",
+            "gray",
+            "cloudy",
+            "neutral"
+        ]
+    },
+    {
+        "name": "Fiery Orange",
+        "type": "gradient",
+        "colors": [
+            "#7c2d12",
+            "#ea580c",
+            "#f97316",
+            "#fb923c"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "fiery",
+            "orange",
+            "fire",
+            "energy"
+        ]
+    },
+    {
+        "name": "Aqua Marine",
+        "type": "gradient",
+        "colors": [
+            "#ecfeff",
+            "#a5f3fc",
+            "#67e8f9",
+            "#22d3ee"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "aqua",
+            "marine",
+            "blue",
+            "fresh"
+        ]
+    },
+    {
+        "name": "Royal Gold",
+        "type": "palette",
+        "colors": [
+            "#78350f",
+            "#92400e",
+            "#b45309",
+            "#d97706"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "royal",
+            "gold",
+            "luxury",
+            "rich"
+        ]
+    },
+    {
+        "name": "Twilight Sky",
+        "type": "gradient",
+        "colors": [
+            "#1e1b4b",
+            "#3730a3",
+            "#6366f1",
+            "#a5b4fc"
+        ],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/roshansuthar1105",
+        "tags": [
+            "twilight",
+            "sky",
+            "purple",
+            "evening"
         ]
     }
 ]

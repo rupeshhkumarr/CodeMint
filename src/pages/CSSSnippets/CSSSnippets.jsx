@@ -127,9 +127,10 @@ const CSSSnippets = () => {
                       </span>
                     ))}
                   </div>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    by {snippet.contributor}
-                  </span>
+                  <a className="text-sm text-gray-500 dark:text-gray-400 " href={snippet.contributor_github ? snippet.contributor_github : "https://github.com/roshansuthar1105"} target="_blank" >
+                    by <span className=" hover:text-purple-400 cursor-pointer hover:underline " > {snippet.contributor} </span>
+                  </a>
+
                 </div>
               </div>
 
