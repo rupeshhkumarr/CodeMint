@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Glass Morphism",
+        "css": ".glass {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(10px);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n}",
+        "type": "effect",
+        "contributor": "alicecodes",
+        "tags": [
+            "glass",
+            "blur",
+            "modern"
+        ]
+    },
+    {
+        "title": "Neon Glow",
+        "css": ".neon-glow {\n  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6;\n  animation: flicker 1.5s infinite alternate;\n}",
+        "type": "text-effect",
+        "contributor": "bobdev",
+        "tags": [
+            "neon",
+            "glow",
+            "animation"
+        ]
+    }
+]

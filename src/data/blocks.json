@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Hero Section",
+        "path": "HeroSection",
+        "tags": [
+            "hero",
+            "landing",
+            "header"
+        ],
+        "contributor": "caroldesign"
+    },
+    {
+        "title": "Pricing Cards",
+        "path": "PricingCards",
+        "tags": [
+            "pricing",
+            "cards",
+            "business"
+        ],
+        "contributor": "alicecodes"
+    }
+]
