@@ -58,7 +58,7 @@ const About = () => {
             className="text-center"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About Frontend Playground
+              About CodeMint
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
               An open-source hub where developers discover, learn, and share
@@ -81,7 +81,7 @@ const About = () => {
               Our Mission
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Frontend Playground was created to make frontend development more
+              CodeMint was created to make frontend development more
               accessible and collaborative. We believe in sharing knowledge,
               reusable code, and helping developers of all levels build amazing
               user interfaces faster and more efficiently.
@@ -174,7 +174,7 @@ const About = () => {
           >
             <h2 className="text-4xl font-bold mb-6">Join Our Community</h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Frontend Playground is built by developers like you. Share your
+              CodeMint is built by developers like you. Share your
               components, learn from others, and help grow this resource for
               everyone.
             </p>

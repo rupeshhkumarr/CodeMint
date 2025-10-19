@@ -53,8 +53,11 @@ const Home = () => {
             className="text-center"
           >
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-              Frontend Playground
+              Code<span className="text-amber-400" >Mint</span>
             </h1>
+            <p className="text-amber-200 text-md md:text-xl dark:text-amber-200 mb-8 max-w-3xl mx-auto">
+              Design faster. Build smarter.
+            </p>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
               An open-source hub for frontend developers. Discover, learn, and
               contribute components, snippets, and effects.
