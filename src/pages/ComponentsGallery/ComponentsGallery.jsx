@@ -4,27 +4,78 @@ import { motion } from "framer-motion";
 import componentsData from "../../data/components.json";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 
+// Vite's glob import - this gets all .jsx files in the components directory
+const componentModules = import.meta.glob("./components/*.jsx", {
+  eager: true,
+  query: "?raw",
+});
+
+// Alternative: if the above doesn't work, use this:
+// const componentModules = import.meta.glob('./components/*.jsx', { eager: true })
+
 const ComponentsGallery = () => {
   const [components, setComponents] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [sourceCodes, setSourceCodes] = useState({});
 
   useEffect(() => {
     const loadComponents = async () => {
-      const loadedComponents = await Promise.all(
-        componentsData.map(async (comp) => {
-          try {
-            const module = await import(`./components/${comp.path}.jsx`);
-            return { ...comp, Component: module.default };
-          } catch (error) {
-            console.error(`Failed to load component ${comp.path}:`, error);
-            return {
-              ...comp,
-              Component: () => <div>Failed to load component</div>,
-            };
-          }
-        })
-      );
-      setComponents(loadedComponents);
+      try {
+        // Load component modules
+        const modules = await Promise.all(
+          componentsData.map(async (comp) => {
+            try {
+              // Method 1: Using dynamic import with raw query
+              const module = await import(`./components/${comp.path}.jsx?raw`);
+              return { ...comp, sourceCode: module.default };
+            } catch (error) {
+              console.warn(`Failed to load source for ${comp.path}:`, error);
+
+              // Method 2: Fallback to static analysis
+              try {
+                const response = await fetch(
+                  `/src/pages/ComponentsGallery/components/${comp.path}.jsx`
+                );
+                if (response.ok) {
+                  const sourceCode = await response.text();
+                  return { ...comp, sourceCode };
+                }
+              } catch (fetchError) {
+                console.error(`Fetch failed for ${comp.path}:`, fetchError);
+              }
+
+              return { ...comp, sourceCode: "// Source code not available" };
+            }
+          })
+        );
+
+        // Load components for display
+        const displayComponents = await Promise.all(
+          componentsData.map(async (comp) => {
+            try {
+              const module = await import(`./components/${comp.path}.jsx`);
+              return { ...comp, Component: module.default };
+            } catch (error) {
+              console.error(`Failed to load component ${comp.path}:`, error);
+              return {
+                ...comp,
+                Component: () => <div>Component failed to load</div>,
+              };
+            }
+          })
+        );
+
+        setComponents(displayComponents);
+
+        // Create source code mapping
+        const codeMap = {};
+        modules.forEach((module) => {
+          codeMap[module.path] = module.sourceCode;
+        });
+        setSourceCodes(codeMap);
+      } catch (error) {
+        console.error("Error loading components:", error);
+      }
     };
 
     loadComponents();
@@ -39,15 +90,32 @@ const ComponentsGallery = () => {
         );
 
   const handleCopyCode = async (componentPath) => {
-    try {
-      const response = await fetch(
-        `/src/pages/ComponentsGallery/components/${componentPath}.jsx`
-      );
-      const code = await response.text();
-      await copyToClipboard(code);
-    } catch (error) {
-      console.error("Failed to copy code:", error);
+    const sourceCode = sourceCodes[componentPath];
+    if (sourceCode && sourceCode !== "// Source code not available") {
+      // Clean the source code - remove Vite specific code
+      const cleanCode = cleanSourceCode(sourceCode);
+      await copyToClipboard(cleanCode);
+    } else {
+      alert("Source code not available for this component");
     }
+  };
+
+  // Function to clean Vite-specific code from source
+  const cleanSourceCode = (code) => {
+    // Remove Vite's hot module replacement code
+    let cleanCode = code.replace(/import\.meta\.hot.*?}\s*$/s, "");
+
+    // Remove source map comments
+    cleanCode = cleanCode.replace(/\/\/# sourceMappingURL=.*$/gm, "");
+
+    // Remove Vite preamble
+    cleanCode = cleanCode.replace(/import.*vite.*client.*/g, "");
+    cleanCode = cleanCode.replace(/import.*jsxDevRuntime.*/g, "");
+    cleanCode = cleanCode.replace(/\$RefreshReg\$.*/g, "");
+    cleanCode = cleanCode.replace(/\$RefreshSig\$.*/g, "");
+
+    // Trim extra whitespace
+    return cleanCode.trim();
   };
 
   return (
@@ -123,7 +191,12 @@ const ComponentsGallery = () => {
                   </span>
                   <button
                     onClick={() => handleCopyCode(component.path)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                    disabled={
+                      !sourceCodes[component.path] ||
+                      sourceCodes[component.path] ===
+                        "// Source code not available"
+                    }
+                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
                   >
                     Copy Code
                   </button>
