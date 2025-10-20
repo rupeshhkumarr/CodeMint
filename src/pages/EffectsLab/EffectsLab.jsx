@@ -245,6 +245,17 @@ const EffectsLab = () => {
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
             Effects Lab
           </h1>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 rounded-full mb-4">
+            <span className="text-sm text-purple-700 dark:text-purple-300">
+              New to contributing?
+            </span>
+            <a
+              href="#guidepage"
+              className="scroll-smooth text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 underline underline-offset-2 transition-colors duration-200"
+            >
+              View guide
+            </a>
+          </div>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Interactive CSS effects and animations. Copy the code and bring your
             designs to life!
@@ -298,36 +309,102 @@ const EffectsLab = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700"
+          id="guidepage"
         >
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
             How to Contribute Effects
           </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-600 dark:text-gray-300 mb-3">
-              Share your creative CSS effects and animations:
+              Share your creative CSS effects and animations. You can contribute
+              in two ways:
             </p>
-            <ol className="list-decimal list-inside space-y-1 text-gray-600 dark:text-gray-300 text-sm">
-              <li>
-                Edit <code>src/data/effects.json</code>
-              </li>
-              <li>Add a new effect object with CSS, HTML, and JS code</li>
-              <li>Include type, tags, and your username</li>
-              <li>Submit a pull request</li>
-            </ol>
-            <div className="mt-3 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
+
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                Option 1: Use the Contribution Form (Recommended)
+              </h3>
+              <ol className="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300 text-sm mb-4">
+                <li>
+                  Go to the form page :{" "}
+                  <a
+                    href="/contribute"
+                    target="_blank"
+                    className=" text-blue-400 underline "
+                  >
+                    /contribute
+                  </a>{" "}
+                </li>
+                <li>Fill out the form above with your effect details</li>
+                <li>
+                  Click "Generate JSON" to create the properly formatted code
+                </li>
+                <li>Copy the generated JSON output</li>
+                <li>
+                  Add it to <code>src/data/effects.json</code> in your pull
+                  request
+                </li>
+              </ol>
+              <div className="p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                <p className="text-green-800 dark:text-green-300 text-sm">
+                  <strong>Pro tip:</strong> Use the "Load Example" button to see
+                  a properly formatted example!
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                Option 2: Manual JSON Creation
+              </h3>
+              <ol className="list-decimal list-inside space-y-1 text-gray-600 dark:text-gray-300 text-sm">
+                <li>
+                  Edit <code>src/data/effects.json</code>
+                </li>
+                <li>
+                  Add a new effect object following the exact format below
+                </li>
+                <li>
+                  <strong>Important:</strong> Escape newlines in CSS using{" "}
+                  <code>\n</code>
+                </li>
+                <li>Include type, tags, and your username</li>
+                <li>Submit a pull request</li>
+              </ol>
+            </div>
+
+            <div className="mt-4 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
               <pre className="text-xs text-gray-700 dark:text-gray-300 overflow-x-auto">
                 {`{
   "name": "Your Effect Name",
   "type": "animation",
   "previewClass": "your-effect",
-  "css": "your css here",
-  "html": "your html structure",
-  "js": "your javascript code",
+  "css": ".your-class {\\n  property: value;\\n  another-property: value;\\n}",
+  "html": "<div class=\\"your-class\\">Your content</div>",
+  "js": "// Optional JavaScript code",
   "contributor": "yourname",
-  "contributor_github": "yourgithuburl",
-  "tags": ["animation", "hover"]
+  "contributor_github": "https://github.com/yourusername",
+  "tags": ["animation", "hover", "interaction"]
 }`}
               </pre>
+            </div>
+
+            <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+              <p className="text-yellow-800 dark:text-yellow-300 text-sm">
+                <strong>Note:</strong> When creating JSON manually, remember to:
+              </p>
+              <ul className="list-disc list-inside mt-1 text-yellow-700 dark:text-yellow-400 text-sm">
+                <li>
+                  Use double quotes for all property names and string values
+                </li>
+                <li>
+                  Escape double quotes within strings using <code>\"</code>
+                </li>
+                <li>
+                  Replace actual newlines with <code>\n</code> in CSS code
+                </li>
+                <li>Ensure proper comma placement between properties</li>
+              </ul>
             </div>
           </div>
         </motion.div>
