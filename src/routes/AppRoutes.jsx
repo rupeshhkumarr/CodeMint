@@ -7,6 +7,7 @@ import UIBlocksLibrary from "../pages/UIBlocksLibrary/UIBlocksLibrary";
 import EffectsLab from "../pages/EffectsLab/EffectsLab";
 import ColorUtilities from "../pages/ColorUtilities/ColorUtilities";
 import About from "../pages/About/About";
+import Contribute from "../pages/Contribute/Contribute";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
       <Route path="/effects" element={<EffectsLab />} />
       <Route path="/colors" element={<ColorUtilities />} />
       <Route path="/about" element={<About />} />
+      <Route path="/contribute" element={<Contribute />} />
     </Routes>
   );
 };
