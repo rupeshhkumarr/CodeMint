@@ -1,48 +1,263 @@
 // src/pages/EffectsLab/EffectsLab.jsx
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
+import { FaCopy, FaGithub } from "react-icons/fa";
 import effectsData from "../../data/effects.json";
 import { copyToClipboard } from "../../utils/copyToClipboard";
+
+// Empty Block Component that fills remaining space
+const EmptyBlock = ({ height = "auto" }) => (
+  <div
+    className="w-full bg-gray-800 rounded-xl border border-white/20 "
+    style={{ minHeight: height }}
+    aria-hidden="true"
+  ></div>
+);
+
+// EffectCard Component
+const EffectCard = ({
+  effect,
+  index,
+  activeTab,
+  onTabChange,
+  onCopyCode,
+  getCurrentCode,
+  renderPreview,
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+    >
+      <div className="p-4">
+        <div className="flex justify-between items-start mb-3">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1 flex-1 mr-2">
+            {effect.name}
+          </h3>
+          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 text-xs rounded-full flex-shrink-0">
+            {effect.type}
+          </span>
+        </div>
+
+        {/* Effect Preview */}
+        <div className="mb-3 p-3 bg-gray-100 dark:bg-slate-700 rounded-lg border border-gray-200 dark:border-gray-600 flex justify-center items-center min-h-[80px]">
+          <style>{effect.css}</style>
+          {renderPreview(effect, index)}
+        </div>
+
+        {/* Code Tabs */}
+        <div className="mb-3 relative">
+          <div className="flex border-b border-gray-200 dark:border-gray-600 mb-2">
+            {["css", "html", "js"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => onTabChange(index, tab)}
+                className={`cursor-pointer px-2 py-1 font-medium text-xs flex-1 ${
+                  activeTab === tab
+                    ? "text-purple-600 border-b-2 border-purple-600"
+                    : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                }`}
+              >
+                {tab.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {/* Code Block with Copy Button */}
+          <button
+            onClick={() => onCopyCode(getCurrentCode(effect, index))}
+            className="cursor-pointer absolute z-10 top-10 right-4 p-2 bg-gray-700 hover:bg-gray-600 rounded transition-colors duration-200 group"
+            title="Copy code"
+          >
+            <FaCopy className="w-4 h-4 text-gray-300 group-hover:text-white" />
+          </button>
+          <div className="bg-gray-900 rounded-lg p-2 max-h-28 overflow-y-auto relative custom-scrollbar">
+            <pre className="text-blue-400 text-xs pr-6">
+              <code>{getCurrentCode(effect, index)}</code>
+            </pre>
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <div className="flex flex-wrap gap-1 flex-1">
+            {effect.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 text-xs rounded"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <a
+            className="text-xs text-gray-500 dark:text-gray-400 hover:text-purple-400 cursor-pointer hover:underline flex items-center gap-1 ml-2 flex-shrink-0"
+            href={
+              effect.contributor_github || "https://github.com/roshansuthar1105"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub className="w-3 h-3" />
+            by {effect.contributor}
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const EffectsLab = () => {
   const [effects] = useState(effectsData);
   const [selectedType, setSelectedType] = useState("all");
+  const [activeTabs, setActiveTabs] = useState({});
+  const previewRefs = useRef([]);
 
-  const types = ["all", ...new Set(effects.map((effect) => effect.type))];
+  const types = useMemo(
+    () => ["all", ...new Set(effects.map((effect) => effect.type))],
+    [effects]
+  );
 
-  const filteredEffects =
-    selectedType === "all"
-      ? effects
-      : effects.filter((effect) => effect.type === selectedType);
+  const filteredEffects = useMemo(
+    () =>
+      selectedType === "all"
+        ? effects
+        : effects.filter((effect) => effect.type === selectedType),
+    [selectedType, effects]
+  );
 
-  const handleCopyCode = async (cssCode) => {
-    await copyToClipboard(cssCode);
-  };
+  // Distribute effects into masonry columns with empty blocks for balance
+  const masonryColumns = useMemo(() => {
+    const columns = [[], [], []];
+
+    // Distribute real effects
+    filteredEffects.forEach((effect, index) => {
+      columns[index % 3].push({
+        effect,
+        originalIndex: index,
+        type: "effect",
+      });
+    });
+
+    // Calculate maximum column length
+    const maxColumnLength = Math.max(...columns.map((col) => col.length));
+
+    // Add empty blocks to make all columns equal length
+    columns.forEach((column, columnIndex) => {
+      const emptyBlocksNeeded = maxColumnLength - column.length;
+      for (let i = 0; i < emptyBlocksNeeded; i++) {
+        column.push({
+          type: "empty",
+          id: `empty-${columnIndex}-${i}`,
+          // Calculate approximate height to fill space (average card height)
+          height: 300, // Approximate height of an effect card
+        });
+      }
+    });
+
+    return columns;
+  }, [filteredEffects]);
+
+  // Initialize active tabs for each effect
+  useEffect(() => {
+    const initialTabs = {};
+    filteredEffects.forEach((_, index) => {
+      initialTabs[index] = "css";
+    });
+    setActiveTabs(initialTabs);
+  }, [filteredEffects]);
+
+  const handleCopyCode = useCallback(async (code) => {
+    await copyToClipboard(code);
+  }, []);
+
+  const handleTabChange = useCallback((effectIndex, tab) => {
+    setActiveTabs((prev) => ({
+      ...prev,
+      [effectIndex]: tab,
+    }));
+  }, []);
+
+  // Initialize JavaScript for effects that need it
+  useEffect(() => {
+    filteredEffects.forEach((effect, index) => {
+      if (effect.js && previewRefs.current[index]) {
+        try {
+          const jsCode = effect.js.replace(
+            /document\.querySelector/g,
+            "preview.querySelector"
+          );
+          const initFunction = new Function("preview", jsCode);
+          initFunction(previewRefs.current[index]);
+        } catch (error) {
+          console.warn(`Error initializing JS for ${effect.name}:`, error);
+        }
+      }
+    });
+  }, [filteredEffects, activeTabs]);
+
+  const renderPreview = useCallback((effect, index) => {
+    if (effect.html) {
+      return (
+        <div
+          ref={(el) => (previewRefs.current[index] = el)}
+          dangerouslySetInnerHTML={{ __html: effect.html }}
+          className="w-full h-full flex items-center justify-center"
+        />
+      );
+    }
+
+    return (
+      <div
+        className={`cursor-pointer text-center p-2 bg-white dark:bg-gray-200 rounded-lg shadow-md ${effect.previewClass} w-full h-full flex items-center justify-center`}
+      >
+        Hover Me
+      </div>
+    );
+  }, []);
+
+  const getCurrentCode = useCallback(
+    (effect, effectIndex) => {
+      const currentTab = activeTabs[effectIndex] || "css";
+      switch (currentTab) {
+        case "css":
+          return effect.css;
+        case "html":
+          return effect.html || "<!-- No HTML provided -->";
+        case "js":
+          return effect.js || "// No JavaScript provided";
+        default:
+          return effect.css;
+      }
+    },
+    [activeTabs]
+  );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
             Effects Lab
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Interactive CSS effects and animations. Copy the CSS and bring your
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Interactive CSS effects and animations. Copy the code and bring your
             designs to life!
           </p>
         </motion.div>
 
         {/* Type Filters */}
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
+        <div className="flex flex-wrap gap-2 justify-center mb-6">
           {types.map((type) => (
             <button
               key={type}
               onClick={() => setSelectedType(type)}
-              className={`cursor-pointer px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+              className={`cursor-pointer px-3 py-1.5 rounded-lg font-medium transition-colors duration-200 text-sm ${
                 selectedType === type
                   ? "bg-purple-600 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -53,76 +268,27 @@ const EffectsLab = () => {
           ))}
         </div>
 
-        {/* Effects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredEffects.map((effect, index) => (
-            <motion.div
-              key={effect.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
-            >
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    {effect.name}
-                  </h3>
-                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 text-sm rounded-full">
-                    {effect.type}
-                  </span>
-                </div>
-
-                {/* Effect Preview */}
-                <div className="mb-4 p-8 bg-gray-100 dark:bg-slate-700 rounded-lg border border-gray-200 dark:border-gray-600 flex justify-center items-center min-h-[120px]">
-                  <div
-                    className={`cursor-pointer text-center p-4 bg-white dark:bg-gray-200 rounded-lg shadow-md ${effect.previewClass}`}
-                    style={{
-                      minWidth: "100px",
-                      minHeight: "80px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <style>{effect.css}</style>
-                    Hover Me
-                  </div>
-                </div>
-
-                {/* CSS Code */}
-                <div className="bg-gray-900 rounded-lg p-4 mb-4">
-                  <pre className="text-green-400 text-sm overflow-x-auto">
-                    <code>{effect.css}</code>
-                  </pre>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <div className="flex flex-wrap gap-1">
-                    {effect.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 text-xs rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <a className="text-sm text-gray-500 dark:text-gray-400 " href={effect.contributor_github ? effect.contributor_github : "https://github.com/roshansuthar1105"} target="_blank" >
-                    by <span className=" hover:text-purple-400 cursor-pointer hover:underline " > {effect.contributor} </span>
-                  </a>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 dark:bg-gray-700/50 px-6 py-4">
-                <button
-                  onClick={() => handleCopyCode(effect.css)}
-                  className="cursor-pointer w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  ✨ Copy Effect CSS
-                </button>
-              </div>
-            </motion.div>
+        {/* Masonry Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {masonryColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className="grid gap-3">
+              {column.map((item) =>
+                item.type === "effect" ? (
+                  <EffectCard
+                    key={item.effect.name}
+                    effect={item.effect}
+                    index={item.originalIndex}
+                    activeTab={activeTabs[item.originalIndex]}
+                    onTabChange={handleTabChange}
+                    onCopyCode={handleCopyCode}
+                    getCurrentCode={getCurrentCode}
+                    renderPreview={renderPreview}
+                  />
+                ) : (
+                  <EmptyBlock key={item.id} height={item.height} />
+                )
+              )}
+            </div>
           ))}
         </div>
 
@@ -131,30 +297,32 @@ const EffectsLab = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-16 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700"
+          className="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700"
         >
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
             How to Contribute Effects
           </h2>
           <div className="prose dark:prose-invert max-w-none">
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-600 dark:text-gray-300 mb-3">
               Share your creative CSS effects and animations:
             </p>
-            <ol className="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
+            <ol className="list-decimal list-inside space-y-1 text-gray-600 dark:text-gray-300 text-sm">
               <li>
                 Edit <code>src/data/effects.json</code>
               </li>
-              <li>Add a new effect object with CSS code and preview class</li>
+              <li>Add a new effect object with CSS, HTML, and JS code</li>
               <li>Include type, tags, and your username</li>
               <li>Submit a pull request</li>
             </ol>
-            <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-              <pre className="text-sm text-gray-700 dark:text-gray-300">
+            <div className="mt-3 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
+              <pre className="text-xs text-gray-700 dark:text-gray-300 overflow-x-auto">
                 {`{
   "name": "Your Effect Name",
   "type": "animation",
   "previewClass": "your-effect",
   "css": "your css here",
+  "html": "your html structure",
+  "js": "your javascript code",
   "contributor": "yourname",
   "contributor_github": "yourgithuburl",
   "tags": ["animation", "hover"]
