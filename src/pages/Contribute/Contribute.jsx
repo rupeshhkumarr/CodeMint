@@ -42,10 +42,10 @@ const ContributionTypeSelector = ({ selectedType, onTypeChange }) => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => onTypeChange(type.id)}
-            className={`p-6 rounded-xl border-2 transition-all duration-200 text-left ${
+            className={`p-6 rounded-2xl border-2 transition-all duration-300 text-left shadow-lg hover:shadow-xl ${
               selectedType === type.id
-                ? "border-purple-600 bg-purple-50 dark:bg-purple-900/20"
-                : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-purple-400"
+                ? "border-purple-600 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 scale-105"
+                : "border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-purple-400 hover:scale-102"
             }`}
           >
             <div className="flex items-center gap-3 mb-2">
@@ -106,7 +106,7 @@ const EffectForm = ({ formData, onFormChange, onJsonOutput }) => {
             required
             value={formData.name}
             onChange={(e) => onFormChange("name", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:border-purple-600 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900/20 transition-all"
             placeholder="Hover Underline"
           />
         </div>
@@ -119,7 +119,7 @@ const EffectForm = ({ formData, onFormChange, onJsonOutput }) => {
             required
             value={formData.type}
             onChange={(e) => onFormChange("type", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:border-purple-600 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900/20 transition-all"
           >
             <option value="">Select type</option>
             <option value="animation">Animation</option>
@@ -139,7 +139,7 @@ const EffectForm = ({ formData, onFormChange, onJsonOutput }) => {
           required
           value={formData.previewClass}
           onChange={(e) => onFormChange("previewClass", e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:border-purple-600 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900/20 transition-all"
           placeholder="hover-underline"
         />
       </div>
@@ -195,7 +195,7 @@ const EffectForm = ({ formData, onFormChange, onJsonOutput }) => {
             required
             value={formData.tags}
             onChange={(e) => onFormChange("tags", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:border-purple-600 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900/20 transition-all"
             placeholder="hover, underline, text, interaction"
           />
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -212,7 +212,7 @@ const EffectForm = ({ formData, onFormChange, onJsonOutput }) => {
             required
             value={formData.contributor_github}
             onChange={(e) => onFormChange("contributor_github", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:border-purple-600 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900/20 transition-all"
             placeholder="https://github.com/yourusername"
           />
         </div>
@@ -221,7 +221,7 @@ const EffectForm = ({ formData, onFormChange, onJsonOutput }) => {
       <div className="flex gap-4">
         <button
           type="submit"
-          className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors duration-200"
+          className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-semibold transition-all duration-200 hover:scale-105 hover:shadow-xl"
         >
           Generate JSON
         </button>
@@ -310,7 +310,7 @@ const Contribute = () => {
   }, [jsonOutput]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
