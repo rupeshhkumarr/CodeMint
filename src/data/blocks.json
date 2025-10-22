@@ -7,16 +7,42 @@
             "landing",
             "header"
         ],
-        "contributor": "caroldesign"
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/Roshansuthar1105"
     },
     {
+        "title": "Modern Card",
+        "path": "ModernCard",
+        "tags": ["card", "ui", "interactive"],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/Roshansuthar1105"
+      },
+      {
+        "title": "Stats Dashboard",
+        "path": "StatsDashboard",
+        "tags": ["dashboard", "analytics", "data"],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/Roshansuthar1105"
+      },
+      {
         "title": "Pricing Cards",
         "path": "PricingCards",
-        "tags": [
-            "pricing",
-            "cards",
-            "business"
-        ],
-        "contributor": "alicecodes"
-    }
+        "tags": ["pricing", "business", "cards"],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/Roshansuthar1105"
+      },
+      {
+        "title": "Notification Alert",
+        "path": "NotificationAlert",
+        "tags": ["notifications", "alerts", "messages"],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/Roshansuthar1105"
+      },
+      {
+        "title": "User Profile",
+        "path": "UserProfile",
+        "tags": ["profile", "user", "social"],
+        "contributor": "Roshan Suthar",
+        "contributor_github": "https://github.com/Roshansuthar1105"
+      }
 ]
