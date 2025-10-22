@@ -1,21 +1,23 @@
 // src/App.jsx
-import { BrowserRouter } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import AppRoutes from './routes/AppRoutes'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import { Toaster } from 'react-hot-toast'
+import { BrowserRouter } from "react-router-dom";
+import { useState, useEffect } from "react";
+import AppRoutes from "./routes/AppRoutes";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
     }
-  }, [darkMode])
+  }, [darkMode]);
 
   return (
     <BrowserRouter>
@@ -27,15 +29,15 @@ function App() {
         <Footer />
         <Toaster
           toastOptions={{
-            className: '',
+            className: "",
             style: {
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: "1px solid rgba(255, 255, 255, 0.1)",
             },
             success: {
               duration: 2000,
               theme: {
-                primary: 'green',
-                secondary: 'black',
+                primary: "green",
+                secondary: "black",
               },
             },
             error: {
@@ -45,7 +47,7 @@ function App() {
         />
       </div>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

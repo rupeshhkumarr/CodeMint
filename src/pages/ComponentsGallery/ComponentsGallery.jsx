@@ -119,7 +119,7 @@ const ComponentsGallery = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -166,13 +166,13 @@ const ComponentsGallery = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-slate-700 group"
             >
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-700/50 flex justify-center items-center min-h-[120px]">
+              <div className="p-8 border-b border-gray-200 dark:border-slate-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 flex justify-center items-center min-h-[150px]">
                 <component.Component />
               </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <div className="p-6 bg-white dark:bg-slate-800">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all">
                   {component.title}
                 </h3>
                 <div className="flex flex-wrap gap-1 mb-3">
@@ -186,8 +186,20 @@ const ComponentsGallery = () => {
                   ))}
                 </div>
                 <div className="flex justify-between items-center">
-                  <a className="text-sm text-gray-500 dark:text-gray-400 " href={component.contributor_github ? component.contributor_github : "https://github.com/roshansuthar1105"} target="_blank" >
-                    by <span className=" hover:text-purple-400 cursor-pointer hover:underline " > {component.contributor} </span>
+                  <a
+                    className="text-sm text-gray-500 dark:text-gray-400 "
+                    href={
+                      component.contributor_github
+                        ? component.contributor_github
+                        : "https://github.com/roshansuthar1105"
+                    }
+                    target="_blank"
+                  >
+                    by{" "}
+                    <span className=" hover:text-purple-400 cursor-pointer hover:underline ">
+                      {" "}
+                      {component.contributor}{" "}
+                    </span>
                   </a>
                   <button
                     onClick={() => handleCopyCode(component.path)}
@@ -196,7 +208,7 @@ const ComponentsGallery = () => {
                       sourceCodes[component.path] ===
                         "// Source code not available"
                     }
-                    className="cursor-pointer bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg"
                   >
                     Copy Code
                   </button>

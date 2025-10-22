@@ -29,7 +29,7 @@ const EffectCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+      className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-slate-700"
     >
       <div className="p-4">
         <div className="flex justify-between items-start mb-3">
@@ -42,7 +42,7 @@ const EffectCard = ({
         </div>
 
         {/* Effect Preview */}
-        <div className="mb-3 p-3 bg-gray-100 dark:bg-slate-700 rounded-lg border border-gray-200 dark:border-gray-600 flex justify-center items-center min-h-[80px]">
+        <div className="mb-4 p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-700 dark:to-slate-600 rounded-xl border-2 border-purple-200 dark:border-slate-600 flex justify-center items-center min-h-[100px]">
           <style>{effect.css}</style>
           {renderPreview(effect, index)}
         </div>
@@ -235,14 +235,14 @@ const EffectsLab = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 dark:from-slate-900 dark:to-slate-800 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-4">
             Effects Lab
           </h1>
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 rounded-full mb-4">
@@ -268,10 +268,10 @@ const EffectsLab = () => {
             <button
               key={type}
               onClick={() => setSelectedType(type)}
-              className={`cursor-pointer px-3 py-1.5 rounded-lg font-medium transition-colors duration-200 text-sm ${
+              className={`px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm shadow-md hover:shadow-lg ${
                 selectedType === type
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
+                  ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white scale-105"
+                  : "bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 border border-gray-200 dark:border-slate-700"
               }`}
             >
               {type.charAt(0).toUpperCase() + type.slice(1)}
