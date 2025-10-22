@@ -7,13 +7,7 @@ const UserProfile = ({ refreshCount = 0 }) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
-    const names = [
-      "Alex Johnson",
-      "Sarah Chen",
-      "Marcus Rivera",
-      "Priya Patel",
-      "James Wilson",
-    ];
+    
     const roles = [
       "Senior Designer",
       "Product Manager",
@@ -36,7 +30,6 @@ const UserProfile = ({ refreshCount = 0 }) => {
       "Tailwind CSS",
     ];
 
-    const randomName = names[Math.floor(Math.random() * names.length)];
     const randomRole = roles[Math.floor(Math.random() * roles.length)];
 
     // Generate random skills (3-6 skills)
@@ -56,11 +49,9 @@ const UserProfile = ({ refreshCount = 0 }) => {
     ];
 
     setUser({
-      name: randomName,
+      name: "Roshan Suthar",
       role: randomRole,
-      avatar: `https://images.unsplash.com/photo-${Math.floor(
-        Math.random() * 1000
-      )}?w=150&h=150&fit=crop&crop=face`,
+      avatar: "https://avatars.githubusercontent.com/u/117620582?v=4",
       stats: randomStats,
       skills: randomSkills,
       joinDate: `Joined ${Math.floor(Math.random() * 12) + 1} months ago`,

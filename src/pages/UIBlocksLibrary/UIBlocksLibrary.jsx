@@ -28,6 +28,9 @@ import {
   FiPlus,
   FiMaximize,
   FiMinimize,
+  FiRefreshCw,
+  FiPlay,
+  FiPause,
 } from "react-icons/fi";
 
 const UIBlocksLibrary = () => {
@@ -40,6 +43,8 @@ const UIBlocksLibrary = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [componentWidths, setComponentWidths] = useState({});
   const [isResizing, setIsResizing] = useState(null);
+  const [refreshCounters, setRefreshCounters] = useState({});
+  const [autoRefresh, setAutoRefresh] = useState({});
   const containerRef = useRef(null);
 
   const blockComponents = {
@@ -115,6 +120,24 @@ const UIBlocksLibrary = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const intervals = {};
+
+    Object.keys(autoRefresh).forEach((blockPath) => {
+      if (autoRefresh[blockPath]) {
+        intervals[blockPath] = setInterval(() => {
+          setRefreshCounters((prev) => ({
+            ...prev,
+            [blockPath]: (prev[blockPath] || 0) + 1,
+          }));
+        }, 2000); // Refresh every 2 seconds
+      }
+    });
+
+    return () => {
+      Object.values(intervals).forEach((interval) => clearInterval(interval));
+    };
+  }, [autoRefresh]);
   const allTags = [...new Set(blocksData.flatMap((block) => block.tags))];
 
   const filteredBlocks = blocks.filter((block) => {
@@ -143,7 +166,19 @@ const UIBlocksLibrary = () => {
     tablet: <FiTablet className="w-4 h-4" />,
     desktop: <FiMonitor className="w-4 h-4" />,
   };
+  const refreshComponent = (blockPath) => {
+    setRefreshCounters((prev) => ({
+      ...prev,
+      [blockPath]: (prev[blockPath] || 0) + 1,
+    }));
+  };
 
+  const toggleAutoRefresh = (blockPath) => {
+    setAutoRefresh((prev) => ({
+      ...prev,
+      [blockPath]: !prev[blockPath],
+    }));
+  };
   const cleanSourceCode = (code) => {
     if (!code || code === "// Source code not available") return code;
 
@@ -213,7 +248,7 @@ const UIBlocksLibrary = () => {
   const updateComponentWidth = (blockPath, change) => {
     setComponentWidths((prev) => {
       const currentWidth = prev[blockPath] || 100;
-      const newWidth = Math.max(20, Math.min(200, currentWidth + change));
+      const newWidth = Math.max(30, Math.min(100, currentWidth + change));
       return { ...prev, [blockPath]: newWidth };
     });
   };
@@ -471,6 +506,8 @@ const UIBlocksLibrary = () => {
             <div className="grid gap-6 md:gap-8">
               {filteredBlocks.map((block, index) => {
                 const currentWidth = componentWidths[block.path] || 100;
+                const refreshCount = refreshCounters[block.path] || 0;
+                const isAutoRefreshing = autoRefresh[block.path] || false;
 
                 return (
                   <motion.div
@@ -529,36 +566,75 @@ const UIBlocksLibrary = () => {
                         </div>
                       </div>
 
-                      {/* Width Controls */}
-                      <div className="flex items-center justify-between mb-4 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                        <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                          Component Width: {Math.round(currentWidth)}%
-                        </span>
+                      {/* Interactive Controls */}
+                      <div className="flex flex-col sm:flex-row gap-4 mb-4 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                        {/* Width Controls */}
+                        <div className="flex-1 flex items-center justify-between">
+                          <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                            Component Width: {Math.round(currentWidth)}%
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() =>
+                                updateComponentWidth(block.path, -10)
+                              }
+                              disabled={currentWidth <= 30}
+                              className="p-2 rounded-lg bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                              title="Decrease width"
+                            >
+                              <FiMinus className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => resetComponentWidth(block.path)}
+                              className="p-2 rounded-lg bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500 transition-colors"
+                              title="Reset to default"
+                            >
+                              <FiMaximize className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() =>
+                                updateComponentWidth(block.path, 10)
+                              }
+                              disabled={currentWidth >= 100}
+                              className="p-2 rounded-lg bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                              title="Increase width"
+                            >
+                              <FiPlus className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Refresh Controls */}
                         <div className="flex items-center gap-2">
                           <button
-                            onClick={() =>
-                              updateComponentWidth(block.path, -10)
+                            onClick={() => refreshComponent(block.path)}
+                            className="flex items-center gap-2 px-3 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500 rounded-lg transition-colors text-sm font-medium"
+                            title="Refresh data"
+                          >
+                            <FiRefreshCw className="w-4 h-4" />
+                            <span className="hidden sm:inline">Refresh</span>
+                          </button>
+                          <button
+                            onClick={() => toggleAutoRefresh(block.path)}
+                            className={`flex items-center gap-2 px-3 py-2 border rounded-lg transition-colors text-sm font-medium ${
+                              isAutoRefreshing
+                                ? "bg-green-500 border-green-500 text-white hover:bg-green-600"
+                                : "bg-white dark:bg-gray-600 border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500"
+                            }`}
+                            title={
+                              isAutoRefreshing
+                                ? "Stop auto-refresh"
+                                : "Start auto-refresh"
                             }
-                            disabled={currentWidth <= 20}
-                            className="p-2 rounded-lg bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                            title="Decrease width"
                           >
-                            <FiMinus className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => resetComponentWidth(block.path)}
-                            className="p-2 rounded-lg bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500 transition-colors"
-                            title="Reset to default"
-                          >
-                            <FiMaximize className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => updateComponentWidth(block.path, 10)}
-                            disabled={currentWidth >= 200}
-                            className="p-2 rounded-lg bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                            title="Increase width"
-                          >
-                            <FiPlus className="w-4 h-4" />
+                            {isAutoRefreshing ? (
+                              <FiPause className="w-4 h-4" />
+                            ) : (
+                              <FiPlay className="w-4 h-4" />
+                            )}
+                            <span className="hidden sm:inline">
+                              {isAutoRefreshing ? "Auto ON" : "Auto OFF"}
+                            </span>
                           </button>
                         </div>
                       </div>
@@ -566,15 +642,20 @@ const UIBlocksLibrary = () => {
                       {/* Block Preview */}
                       <div className="relative">
                         <div
-                          className={`mx-auto ${previewSizes[previewSize]} border-2 border-gray-200 dark:border-gray-600 rounded-2xl overflow-hidden shadow-lg transition-all duration-300`}
+                          className={`mx-auto border-2 border-gray-200 dark:border-gray-600 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 ${
+                            previewSize === "mobile"
+                              ? "max-w-sm"
+                              : previewSize === "tablet"
+                              ? "max-w-md"
+                              : "w-full"
+                          }`}
                           style={{
-                            width: `${currentWidth}%`,
-                            minWidth:
-                              previewSize === "mobile"
-                                ? "320px"
-                                : previewSize === "tablet"
-                                ? "768px"
-                                : "100%",
+                            width:
+                              previewSize === "desktop"
+                                ? `${currentWidth}%`
+                                : "auto",
+                            maxWidth:
+                              previewSize === "desktop" ? "100%" : undefined,
                           }}
                         >
                           <div
@@ -582,23 +663,25 @@ const UIBlocksLibrary = () => {
                             onMouseDown={(e) => startResizing(block.path)}
                           >
                             {block.Component ? (
-                              <block.Component />
+                              <block.Component refreshCount={refreshCount} />
                             ) : (
                               <div className="text-center py-8 md:py-12 text-gray-500">
                                 Component not found
                               </div>
                             )}
 
-                            {/* Resize Handle */}
-                            <div
-                              className={`absolute right-0 top-0 bottom-0 w-2 cursor-col-resize bg-gray-300 dark:bg-gray-600 hover:bg-blue-500 transition-colors ${
-                                isResizing === block.path ? "bg-blue-500" : ""
-                              }`}
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                startResizing(block.path);
-                              }}
-                            />
+                            {/* Resize Handle - Only show for desktop preview */}
+                            {previewSize === "desktop" && (
+                              <div
+                                className={`absolute right-0 top-0 bottom-0 w-2 cursor-col-resize bg-gray-300 dark:bg-gray-600 hover:bg-blue-500 transition-colors ${
+                                  isResizing === block.path ? "bg-blue-500" : ""
+                                }`}
+                                onMouseDown={(e) => {
+                                  e.preventDefault();
+                                  startResizing(block.path);
+                                }}
+                              />
+                            )}
                           </div>
                         </div>
 
@@ -607,6 +690,13 @@ const UIBlocksLibrary = () => {
                           {previewIcons[previewSize]}
                           {previewSize}
                         </div>
+
+                        {/* Refresh Counter */}
+                        {refreshCount > 0 && (
+                          <div className="absolute top-3 left-3 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                            #{refreshCount}
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -617,6 +707,12 @@ const UIBlocksLibrary = () => {
                           <FiEye className="w-3 h-3 md:w-4 md:h-4" />
                           <span>Preview: {previewSize}</span>
                         </div>
+                        {isAutoRefreshing && (
+                          <div className="flex items-center gap-1 text-green-600 dark:text-green-400">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span>Auto-refresh ON</span>
+                          </div>
+                        )}
                         {block.lastUpdated && (
                           <span>Updated {block.lastUpdated}</span>
                         )}
