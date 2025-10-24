@@ -28,5 +28,17 @@
             "UI"
         ],
         "contributor": "caroldesign"
+    },
+    {
+        "title": "Tilted Card",
+        "path": "TiltedCard",
+        "tags": [
+            "card",
+            "animation",
+            "UI"
+        ],
+        "contributor": "Rohit"
     }
 ]
+
+
