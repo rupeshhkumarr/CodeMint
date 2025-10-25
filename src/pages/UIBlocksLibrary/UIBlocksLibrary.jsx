@@ -814,7 +814,7 @@ const UIBlocksLibrary = () => {
               </ol>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 md:p-6">
+            <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 md:p-6 overflow-x-auto">
               <div className="flex items-center gap-2 mb-3 md:mb-4">
                 <FiCode className="w-4 h-4 md:w-5 md:h-5 text-gray-600 dark:text-gray-400" />
                 <h4 className="font-semibold text-gray-900 dark:text-white text-base md:text-lg">
