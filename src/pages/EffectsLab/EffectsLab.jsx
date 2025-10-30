@@ -42,7 +42,7 @@ const EffectCard = ({
         </div>
 
         {/* Effect Preview */}
-        <div className="mb-4 p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-700 dark:to-slate-600 rounded-xl border-2 border-purple-200 dark:border-slate-600 flex justify-center items-center min-h-[100px]">
+        <div className="mb-4 p-4 bg-gradient-to-br from-cyan-500/80 to-purple-500/80 dark:from-slate-700 dark:to-slate-600 rounded-xl border-2 border-purple-200 dark:border-slate-600 flex justify-center items-center min-h-[100px]">
           <style>{effect.css}</style>
           {renderPreview(effect, index)}
         </div>
@@ -74,7 +74,7 @@ const EffectCard = ({
             <FaCopy className="w-4 h-4 text-gray-300 group-hover:text-white" />
           </button>
           <div className="bg-gray-900 rounded-lg p-2 max-h-28 overflow-y-auto relative custom-scrollbar">
-            <pre className="text-blue-400 text-xs pr-6">
+            <pre className="text-blue-400 text-left text-xs pr-6">
               <code>{getCurrentCode(effect, index)}</code>
             </pre>
           </div>
@@ -308,7 +308,7 @@ const EffectsLab = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700"
+          className="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700 text-left"
           id="guidepage"
         >
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">

@@ -115,5 +115,16 @@
     "contributor": "Shubhrant Tripathi",
     "contributor_github": "https://github.com/ishubtripathi",
     "tags": ["button", "animation", "neon", "border", "hover"]
+  },
+  {
+    "name": "Glow Pulse Button",
+    "type": "animation",
+    "previewClass": "glow-pulse",
+    "css": ".glow-pulse {\n  background: linear-gradient(45deg, #00c6ff, #0072ff);\n  color: #fff;\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-weight: bold;\n  text-transform: uppercase;\n  border: none;\n  animation: pulse 2s infinite;\n}\n@keyframes pulse {\n  0% { box-shadow: 0 0 0 0 rgba(0, 114, 255, 0.6); }\n  70% { box-shadow: 0 0 0 20px rgba(0, 114, 255, 0); }\n  100% { box-shadow: 0 0 0 0 rgba(0, 114, 255, 0); }\n}",
+    "html": "<button class=\"glow-pulse\">Click Me</button>",
+    "js": "",
+    "contributor": "Rupesh Kumar",
+    "contributor_github": "https://github.com/rupeshhkumarr",
+    "tags": ["button", "animation", "glow"]
   }
 ]
