@@ -70,6 +70,17 @@
         ],
         "contributor": "Rupesh Kumar",
         "contributor_github":"https://github.com/rupeshhkumarr"
+    },
+    {
+        "title": "Flip3DCard",
+        "path": "Flip3DCard",
+        "tags": [
+           
+            "animation",
+            "UI"
+        ],
+        "contributor": "Rupesh Kumar",
+        "contributor_github":"https://github.com/rupeshhkumarr"
     }
 
 ]
