@@ -59,6 +59,17 @@
         ],
         "contributor": "Rupesh Kumar",
         "contributor_github":"https://github.com/rupeshhkumarr"
+    },
+    {
+        "title": "Glass Magnet Button",
+        "path": "GlassMagnetButton",
+        "tags": [
+           
+            "animation",
+            "UI"
+        ],
+        "contributor": "Rupesh Kumar",
+        "contributor_github":"https://github.com/rupeshhkumarr"
     }
 
 ]
