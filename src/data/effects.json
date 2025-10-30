@@ -126,5 +126,16 @@
     "contributor": "Rupesh Kumar",
     "contributor_github": "https://github.com/rupeshhkumarr",
     "tags": ["button", "animation", "glow"]
+  },
+  {
+    "name": "Liquid Blob Loader",
+    "type": "animation",
+    "previewClass": "liquid-loader",
+    "css": ".liquid-loader {\n  position: relative;\n  width: 100px;\n  height: 100px;\n  background: linear-gradient(45deg, #ff00cc, #3333ff);\n  border-radius: 50%;\n  animation: morph 3s ease-in-out infinite;\n}\n@keyframes morph {\n  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 30% 70% 60%; }\n  50% { border-radius: 70% 30% 50% 50% / 50% 60% 40% 50%; }\n}",
+    "html": "<div class=\"liquid-loader\"></div>",
+    "js": "",
+    "contributor": "Rupesh Kumar",
+    "contributor_github": "https://github.com/rupeshhkumarr",
+    "tags": ["loader", "blob", "animation"]
   }
 ]
