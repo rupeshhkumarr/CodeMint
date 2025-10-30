@@ -137,5 +137,16 @@
     "contributor": "Rupesh Kumar",
     "contributor_github": "https://github.com/rupeshhkumarr",
     "tags": ["loader", "blob", "animation"]
+  },
+  {
+    "name": "3D Cube Animation",
+    "type": "animation",
+    "previewClass": "cube",
+    "css": ".cube {\n  position: relative;\n  width: 100px;\n  height: 100px;\n  transform-style: preserve-3d;\n  animation: spinCube 6s infinite linear;\n}\n.cube div {\n  position: absolute;\n  width: 100px;\n  height: 100px;\n  background: rgba(0,150,255,0.6);\n  border: 2px solid #00f;\n}\n.cube .front { transform: translateZ(50px); }\n.cube .back { transform: rotateY(180deg) translateZ(50px); }\n.cube .left { transform: rotateY(-90deg) translateZ(50px); }\n.cube .right { transform: rotateY(90deg) translateZ(50px); }\n.cube .top { transform: rotateX(90deg) translateZ(50px); }\n.cube .bottom { transform: rotateX(-90deg) translateZ(50px); }\n@keyframes spinCube { to { transform: rotateX(360deg) rotateY(360deg); } }",
+    "html": "<div class=\"cube\">\n  <div class=\"front\"></div>\n  <div class=\"back\"></div>\n  <div class=\"left\"></div>\n  <div class=\"right\"></div>\n  <div class=\"top\"></div>\n  <div class=\"bottom\"></div>\n</div>",
+    "js": "",
+    "contributor": "Rupesh Kumar",
+    "contributor_github": "https://github.com/rupeshhkumarr",
+    "tags": ["3d", "cube", "animation"]
   }
 ]
