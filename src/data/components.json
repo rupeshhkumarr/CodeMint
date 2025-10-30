@@ -48,6 +48,17 @@
             "UI"
         ],
         "contributor": "Rohit-Debnath"
+    },
+    {
+        "title": "Magnetic Glow Card",
+        "path": "MagneticGlowCard",
+        "tags": [
+           
+            "animation",
+            "UI"
+        ],
+        "contributor": "Rupesh Kumar",
+        "contributor_github":"https://github.com/rupeshhkumarr"
     }
 
 ]
