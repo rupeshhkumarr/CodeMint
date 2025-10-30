@@ -223,7 +223,7 @@ const ComponentsGallery = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-16 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700"
+          className="mt-16 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border overflow-auto border-gray-200 dark:border-gray-700"
         >
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             How to Contribute
